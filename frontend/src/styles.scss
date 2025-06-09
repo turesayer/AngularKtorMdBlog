@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Add some spacing between blog posts */
+app-blog-post {
+  display: block;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style markdown content */
+markdown {
+  display: block;
+  line-height: 1.6;
+  color: #333;
+}
+
+markdown h1, markdown h2, markdown h3, markdown h4, markdown h5, markdown h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #1976d2;
+}
+
+markdown p {
+  margin-bottom: 1em;
+}
+
+markdown a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+markdown a:hover {
+  text-decoration: underline;
+}
+
+markdown code {
+  background-color: #f5f5f5;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+markdown pre {
+  background-color: #f5f5f5;
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+}

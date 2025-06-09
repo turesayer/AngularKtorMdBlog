@@ -1,4 +1,16 @@
-<h1>My Blog</h1>
-@for (blogPostPath of blogPosts; track blogPostPath.path) {
-  <app-blog-post [blogPostPath]="blogPostPath.path"></app-blog-post>
-}
+<div class="homepage-container">
+  <mat-card class="welcome-card">
+    <mat-card-header>
+      <mat-card-title>Welcome to My Blog</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Explore my latest posts below.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="blog-posts">
+    @for (blogPostPath of blogPosts; track blogPostPath.path) {
+      <app-blog-post [blogPostPath]="blogPostPath.path"></app-blog-post>
+    }
+  </div>
+</div>

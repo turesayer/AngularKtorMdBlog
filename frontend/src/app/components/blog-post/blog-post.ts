@@ -1,11 +1,13 @@
 import {HttpClient} from '@angular/common/http';
 import {Component, Input, OnChanges, OnInit, signal, SimpleChanges} from '@angular/core';
 import {MarkdownComponent} from 'ngx-markdown';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-blog-post',
   imports: [
-    MarkdownComponent
+    MarkdownComponent,
+    MatCardModule
   ],
   templateUrl: './blog-post.html',
   styleUrl: './blog-post.scss'
