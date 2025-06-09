@@ -7,11 +7,22 @@ plugins {
     id("io.ktor.plugin") version "3.1.3"
 }
 
+kotlin {
+    jvmToolchain(21)
+}
+
 group = "koeln.sayer"
 version = "0.0.1"
 
 application {
     mainClass = "io.ktor.server.netty.EngineMain"
+}
+
+ktor {
+    docker {
+        localImageName.set("blogging_engine")
+        imageTag.set(project.version.toString())
+    }
 }
 
 repositories {
