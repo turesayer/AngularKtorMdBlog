@@ -4,6 +4,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### Served single page application, needs to be build from frontend project ###
+src/main/resources/frontend/*
+
 ### STS ###
 .apt_generated
 .classpath
