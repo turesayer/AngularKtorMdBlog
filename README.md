@@ -1,0 +1,2 @@
+# What is this?
+This should become a blogging engine for blogs where each blog entry is a seperate markdown file. Technically the plan is to have the frontend written in Angular and serve it through Ktor's `Serving single-page applications` functionallity. This should also provide the opportunity to add backend functionallity if required in the lightest possible way without having to add a second server.
