@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && rimraf ../backend/src/main/resources/frontend/browser && copyfiles -u 1 dist/frontend/browser/**/* ../backend/src/main/resources/",
+    "build": "ng build && rimraf ../backend/src/main/resources/frontend/browser && copyfiles -u 2 dist/frontend/**/* ../backend/src/main/resources/frontend && copyfiles -u 1 dist/frontend/browser/**/* ../backend/src/main/resources/",
     "ls": "ls ../backend/src/main/resources/frontend",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -17,6 +17,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "ngx-markdown": "^20.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
