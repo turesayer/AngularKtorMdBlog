@@ -1,3 +1,5 @@
+import io.ktor.plugin.features.*
+
 val kotlin_version: String by project
 val ktor_version: String by project
 val logback_version: String by project
@@ -22,6 +24,14 @@ ktor {
     docker {
         localImageName.set("blogging_engine")
         imageTag.set(project.version.toString())
+        externalRegistry.set(
+            DockerImageRegistry.externalRegistry(
+                username = providers.environmentVariable("DOCKER_USER"),
+                password = providers.environmentVariable("DOCKER_PW"),
+                project = providers.environmentVariable("DOCKER_PROJECT"),
+                hostname = providers.environmentVariable("DOCKER_HOST"),
+            )
+        )
     }
 }
 
