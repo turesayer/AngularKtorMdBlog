@@ -13,6 +13,7 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class Homepage {
   blogPosts = [
+    { title: 'A Simple Blog Engine', path: '/content/2025-06-15-base-blog-engine.md' },
     { title: 'Hello World', path: '/content/2025-06-14-hello-world.md' }
   ]
 }
