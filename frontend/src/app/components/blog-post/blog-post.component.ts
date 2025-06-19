@@ -9,10 +9,10 @@ import {MatCardModule} from '@angular/material/card';
     MarkdownComponent,
     MatCardModule
   ],
-  templateUrl: './blog-post.html',
-  styleUrl: './blog-post.scss'
+  templateUrl: './blog-post.component.html',
+  styleUrl: './blog-post.component.scss'
 })
-export class BlogPost implements OnInit, OnChanges {
+export class BlogPostComponent implements OnInit, OnChanges {
   @Input() blogPostPath: string = '';
 
   markdown = signal('');
@@ -44,7 +44,6 @@ export class BlogPost implements OnInit, OnChanges {
       .subscribe({
         next: (content) => {
           this.markdown.set(content);
-          console.log(this.markdown);
         },
         error: (error) => {
           console.error('Error loading markdown file:', error);

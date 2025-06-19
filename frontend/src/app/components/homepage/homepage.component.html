@@ -16,7 +16,7 @@
   </mat-card>
 
   <div class="blog-posts">
-    @for (blogPostPath of blogPosts; track blogPostPath.path) {
+    @for (blogPostPath of blogPosts(); track blogPostPath.path) {
       <app-blog-post [blogPostPath]="blogPostPath.path"></app-blog-post>
     }
   </div>
