@@ -3,6 +3,7 @@ package koeln.sayer.frontendData
 import io.ktor.http.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import java.io.File
 
 fun Route.frontendDataRoutes() {
     get("posts") {
@@ -19,5 +20,16 @@ fun Route.frontendDataRoutes() {
                 )
             )
         )
+    }
+
+    get("postfiles") {
+        val dir = File("../posts")
+        if (dir.exists()) {
+            val files = dir.listFiles()?.toList() ?: emptyList()
+            val fileNames = files.map { it.name }
+            call.respond(HttpStatusCode.OK, fileNames)
+        } else {
+            call.respond(HttpStatusCode.NotFound)
+        }
     }
 }

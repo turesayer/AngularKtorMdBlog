@@ -15,19 +15,28 @@ fun main(args: Array<String>) {
 
 fun Application.module() {
     install(CORS) {
-        // TODO: Make configurable or set as dev setting
-        allowHost("localhost:4200")
+        /***
+         * Since the Angular app will be served by the Ktor server itself we don't need to allow
+         * any hosts in prod. To work without any hacks locally you can enable cors for the
+         * Angular dev server
+         */
+        if (this@module.environment.config.property("ktor.deployment.environment").getString() != "production") {
+            val frontendLocation = this@module.environment.config.property("frontend.dev.location").getString()
+            val frontendPort = this@module.environment.config.property("frontend.dev.port").getString()
+            allowHost("$frontendLocation:$frontendPort")
+        }
     }
     install(ContentNegotiation) {
         json()
     }
-    configureRouting()
     install(Koin) {
         slf4jLogger()
         modules(
             FrontendDataModule
         )
     }
+
+    configureFrontend()
 
     frontendDataModule()
 }
