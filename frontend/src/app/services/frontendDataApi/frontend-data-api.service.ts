@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 
 export interface BlogPost {
-  title: string;
   path: string;
 }
 
@@ -19,5 +18,9 @@ export class FrontendDataApiService {
 
   getBlogPosts(): Observable<BlogPost[]> {
     return this.http.get<BlogPost[]>(`${this.apiBaseUrl}/frontenddata/posts`);
+  }
+
+  getBlogPostContent(fileName: string): Observable<string> {
+    return this.http.get(`${this.apiBaseUrl}/frontenddata/posts/${fileName}`, {responseType: "text"});
   }
 }

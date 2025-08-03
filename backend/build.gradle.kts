@@ -41,6 +41,18 @@ ktor {
                 providers.environmentVariable("DOCKER_EXECUTABLE").orNull?.let {
                     executable = it
                 }
+                project.logger.lifecycle("Using docker executable: $executable")
+            }
+            providers.environmentVariable("MD_FILE_LOCATION").orNull?.let {
+                extraDirectories {
+                    paths {
+                        path {
+                            setFrom(it)
+                            into = "/posts"
+                        }
+                    }
+                }
+                project.logger.lifecycle("Using extra directory: $it")
             }
         }
     }

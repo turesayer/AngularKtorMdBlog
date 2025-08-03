@@ -31,6 +31,11 @@ fun Application.module() {
     }
     install(Koin) {
         slf4jLogger()
+        properties(
+            mapOf(
+                "posts.file_location" to this@module.environment.config.property("ktor.posts.file_location").getString()
+            )
+        )
         modules(
             FrontendDataModule
         )
