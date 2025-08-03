@@ -15,7 +15,7 @@ kotlin {
 }
 
 group = "koeln.sayer"
-version = "0.0.2"
+version = "0.0.3"
 
 application {
     mainClass = "io.ktor.server.netty.EngineMain"
@@ -33,6 +33,16 @@ ktor {
                 hostname = providers.environmentVariable("DOCKER_HOST"),
             )
         )
+        jib {
+            dockerClient {
+                // This is necessary in case anyone not using docker but podman or some other tool
+                // needs to provide a path to their "docker" executable. In case of podman on mac this
+                // env var should be set to /opt/podman/bin/podman
+                providers.environmentVariable("DOCKER_EXECUTABLE").orNull?.let {
+                    executable = it
+                }
+            }
+        }
     }
 }
 
