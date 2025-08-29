@@ -2,12 +2,15 @@ import io.ktor.plugin.features.*
 
 val koin_version: String by project
 val kotlin_version: String by project
+val kotlinx_datetime_version: String by project
+val kotlinx_serialization_version: String by project
 val ktor_version: String by project
 val logback_version: String by project
 
 plugins {
-    kotlin("jvm") version "2.1.21"
+    kotlin("jvm") version "2.2.10"
     id("io.ktor.plugin") version "3.1.3"
+    kotlin("plugin.serialization") version "2.2.10"
 }
 
 kotlin {
@@ -73,6 +76,9 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation:${ktor_version}")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
     implementation("io.ktor:ktor-server-cors:$ktor_version")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:$kotlinx_datetime_version")
 
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")

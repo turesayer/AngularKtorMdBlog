@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, signal, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, signal, SimpleChanges} from '@angular/core';
 import {MarkdownComponent} from 'ngx-markdown';
 import {MatCardModule} from '@angular/material/card';
 import {FrontendDataApiService} from '../../services/frontendDataApi/frontend-data-api.service';
@@ -12,7 +12,7 @@ import {FrontendDataApiService} from '../../services/frontendDataApi/frontend-da
   templateUrl: './blog-post.component.html',
   styleUrl: './blog-post.component.scss'
 })
-export class BlogPostComponent implements OnInit, OnChanges {
+export class BlogPostComponent implements OnChanges {
   @Input() blogPostPath: string = '';
 
   markdown = signal('');
@@ -20,12 +20,6 @@ export class BlogPostComponent implements OnInit, OnChanges {
   constructor(
     private frontendDataApi: FrontendDataApiService
   ) {
-  }
-
-  ngOnInit() {
-    if (this.blogPostPath) {
-      this.loadMarkdownContent();
-    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
