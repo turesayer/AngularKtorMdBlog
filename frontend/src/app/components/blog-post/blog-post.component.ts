@@ -13,7 +13,6 @@ import {BlogPost, FrontendDataApiService} from '../../services/frontendDataApi/f
   styleUrl: './blog-post.component.scss'
 })
 export class BlogPostComponent implements OnChanges {
-  // @Input() markdownFileName: string = '';
   @Input() blogPostMetadata: BlogPost | undefined = undefined;
 
   markdown = signal('');

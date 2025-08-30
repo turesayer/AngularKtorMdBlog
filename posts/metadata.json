@@ -10,5 +10,11 @@
     "date": "2025-06-15",
     "filename": "2025-06-15-base-blog-engine.md",
     "visibility": "PUBLIC"
+  },
+  {
+    "title": "Serving Posts From The Backend",
+    "date": "2025-08-30",
+    "filename": "2025-08-30-backend-functionality.md",
+    "visibility": "PUBLIC"
   }
 ]
