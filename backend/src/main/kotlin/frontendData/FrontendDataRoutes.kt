@@ -14,7 +14,7 @@ fun Route.frontendDataRoutes() {
         files.forEach { logger().info("Found post: $it") }
         call.respond(
             HttpStatusCode.OK,
-            files.map { mapOf("path" to it) }
+            files
         )
     }
 

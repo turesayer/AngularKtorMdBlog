@@ -16,8 +16,9 @@
   </mat-card>
 
   <div class="blog-posts">
-    @for (blogPostPath of blogPosts(); track blogPostPath.path) {
-      <app-blog-post [blogPostPath]="blogPostPath.path"></app-blog-post>
+    @for (blogPost of blogPosts(); track blogPost) {
+<!--      <app-blog-post [markdownFileName]="blogPost.filename" [blogPostMetadata]="blogPost"></app-blog-post>-->
+      <app-blog-post [blogPostMetadata]="blogPost"></app-blog-post>
     }
   </div>
 </div>

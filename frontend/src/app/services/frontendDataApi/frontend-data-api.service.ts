@@ -1,11 +1,15 @@
 import {HttpClient} from '@angular/common/http';
 import {inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 
 export interface BlogPost {
-  path: string;
+  title: string;
+  date: Date;
+  filename: string;
 }
+
+type RawBlogPost = Omit<BlogPost, 'date'> & { date: string };
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +21,14 @@ export class FrontendDataApiService {
   constructor() { }
 
   getBlogPosts(): Observable<BlogPost[]> {
-    return this.http.get<BlogPost[]>(`${this.apiBaseUrl}/frontenddata/posts`);
+    return this.http
+      .get<RawBlogPost[]>(`${this.apiBaseUrl}/frontenddata/posts`)
+      .pipe(
+        map(posts => posts.map(rawPost => {
+          const parsed = new Date(rawPost.date);
+          return {...rawPost, date: parsed};
+        }))
+      )
   }
 
   getBlogPostContent(fileName: string): Observable<string> {

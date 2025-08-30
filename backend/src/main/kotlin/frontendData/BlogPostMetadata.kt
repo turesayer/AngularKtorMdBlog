@@ -9,6 +9,18 @@ data class BlogPostMetadata(
     val date: LocalDate,
     val filename: String,
     val visibility: Visibility
+) {
+    companion object {
+        fun toDto(metadata: BlogPostMetadata): BlogPostMetadataDto =
+            BlogPostMetadataDto(metadata.title, metadata.date, metadata.filename)
+    }
+}
+
+@Serializable
+data class BlogPostMetadataDto(
+    val title: String,
+    val date: LocalDate,
+    val filename: String,
 )
 
 enum class Visibility {

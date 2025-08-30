@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, signal, SimpleChanges} from '@angular/core';
 import {MarkdownComponent} from 'ngx-markdown';
 import {MatCardModule} from '@angular/material/card';
-import {FrontendDataApiService} from '../../services/frontendDataApi/frontend-data-api.service';
+import {BlogPost, FrontendDataApiService} from '../../services/frontendDataApi/frontend-data-api.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -13,7 +13,8 @@ import {FrontendDataApiService} from '../../services/frontendDataApi/frontend-da
   styleUrl: './blog-post.component.scss'
 })
 export class BlogPostComponent implements OnChanges {
-  @Input() blogPostPath: string = '';
+  // @Input() markdownFileName: string = '';
+  @Input() blogPostMetadata: BlogPost | undefined = undefined;
 
   markdown = signal('');
 
@@ -23,18 +24,18 @@ export class BlogPostComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes["blogPostPath"] && this.blogPostPath) {
+    if (changes["blogPostMetadata"] && this.blogPostMetadata) {
       this.loadMarkdownContent();
     }
   }
 
   private loadMarkdownContent() {
-    if (!this.blogPostPath) {
-      console.warn('No markdown path provided')
+    if (!this.blogPostMetadata?.filename) {
+      console.warn('No markdown filename provided')
       return;
     }
 
-    this.frontendDataApi.getBlogPostContent(this.blogPostPath)
+    this.frontendDataApi.getBlogPostContent(this.blogPostMetadata.filename)
       .subscribe({
         next: (content) => {
           this.markdown.set(content);

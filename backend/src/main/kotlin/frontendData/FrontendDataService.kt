@@ -9,7 +9,7 @@ import java.io.File
 class FrontendDataService(
     private val postsFileLocations: String
 ) {
-    fun getAllPosts(): List<String> {
+    fun getAllPosts(): List<BlogPostMetadataDto> {
         val dir = File("$postsFileLocations/metadata.json")
         if (dir.exists()) {
             val rawMetadataFile = File("$postsFileLocations/metadata.json").readText()
@@ -17,14 +17,14 @@ class FrontendDataService(
                 Json.decodeFromString(rawMetadataFile)
             } catch (e: Exception) {
                 logger().error("Error while parsing metadata.json", e)
-                emptyList<BlogPostMetadata>()
+                emptyList()
             }
 
             return postMetadataList
                 .filter { verifyBlogPostExists(it.filename) }
                 .filter { it.visibility == Visibility.PUBLIC }
                 .sortedByDescending { it.date }
-                .map { it.filename }
+                .map { BlogPostMetadata.toDto(it) }
         } else {
             logger().info("Post directory with metadata.json does not exist")
             return emptyList()
